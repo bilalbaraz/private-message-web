@@ -11,4 +11,13 @@
 .message-box {
   height: 500px;
   border: 1px solid #dddddd;
+  overflow: scroll;
+}
+
+.message {
+  padding: 10px;
+  border-bottom: 1px solid #dddddd;
+  &--author {
+    border-right: 1px solid #dddddd;
+  }
 }

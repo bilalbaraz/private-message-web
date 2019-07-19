@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,5 +26,20 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function messages()
+    {
+        $messages = Message::with(['user'])->get();
+        return response()->json($messages);
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $message = $request->post('message');
+        $user = Auth::user()->load(['messages']);
+        $message = $user->messages()->create(['message' => $message]);
+
+        return response()->json(['name' => $user->name, 'message' => $message->message]);
     }
 }

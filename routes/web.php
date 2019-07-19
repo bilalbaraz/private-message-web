@@ -18,3 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/messages', 'HomeController@messages')->name('messages');
+Route::post('/send-message', 'HomeController@sendMessage')->name('send-message');
