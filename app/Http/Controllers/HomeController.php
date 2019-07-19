@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageSent;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,8 @@ class HomeController extends Controller
         $message = $request->post('message');
         $user = Auth::user()->load(['messages']);
         $message = $user->messages()->create(['message' => $message]);
+
+        broadcast(new MessageSent($user, $message))->toOthers();
 
         return response()->json(['name' => $user->name, 'message' => $message->message]);
     }

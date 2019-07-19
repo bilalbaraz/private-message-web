@@ -54,6 +54,7 @@
                     .post('/send-message', { message: this.textarea })
                     .then(response => {
                         this.fetchData()
+                        this.textarea = ''
                     })
             }
         }
