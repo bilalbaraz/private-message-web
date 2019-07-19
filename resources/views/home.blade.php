@@ -13,8 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <div class="row">
+                        <div class="col-lg-6 col-lg-offset-3 message-box">
+                            se
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
